@@ -1,2 +1,30 @@
 ﻿body {
+    font-family: Montserrat, sans-serif;
 }
+
+.navbar-brand {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 48px;
+    height: 48px;
+}
+
+.footer {
+    background: rgb(33, 37, 41);
+    color: white;
+}
+
+    .footer .links ul {
+        list-style-type: none;
+    }
+
+    .footer .links li a {
+        color: gray;
+        transition: color .2s;
+        text-decoration: none;
+    }
+
+        .footer .links li a:hover {
+            color: white;
+        }
