@@ -1,6 +1,8 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.Blocks;
 @using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Models;
 @using Umbraco.Cms.Core.Routing
 @using Umbraco.Extensions
 @using Umbraco.Cms.Web.Common.PublishedModels;
@@ -9,7 +11,9 @@
 @inject IPublishedUrlProvider PublishedUrlProvider
 
 @{
-    var HeaderLogo = Model.Root()?.Value<IPublishedContent>("headerLogo")?.Url() ?? "";
+    var FooterLogo = Model.Root()?.Value<IPublishedContent>("footerLogo")?.Url() ?? "";
+    var SocialLinks = Model.Value<IEnumerable<BlockListItem>>("socialMediaIconList", fallback: Fallback.ToAncestors);
+    var ContactusLinks = Model.Root()?.Value<IEnumerable<Link>>("contactUsLink");
 }
 
 
@@ -19,17 +23,37 @@
     <div class="col-lg-1 col-xs-12 logo">
         <a class="navbar-brand" href="#">
             <a href="/">
-                @if (HeaderLogo != null)
+                @if (FooterLogo != null)
                 {
-                    <img class="img" src="@HeaderLogo" title="logo" alt="logo" style="width:40px;"/>
+                    <img class="img" src="@FooterLogo" title="logo" alt="logo" style="width:40px;"/>
                 }
             </a>
         </a>
     </div>
     <div class="col-lg-4 col-xs-12 about-company">
       <h2>Heading</h2>
-      <p class="pr-5 text-white-50">Events is a leading corporate event management company operating in India</p>
-      <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+      <p class="pr-5">Events is a leading corporate event management company operating in India</p>
+      <!--<p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>-->
+        <div class="social_media">
+			 @if (SocialLinks != null)
+            {
+				foreach (var SocialLink in SocialLinks)
+				{
+					var content = SocialLink.Content;
+					var Target = content.Value<string>("Target");
+					var Image = content.Value<IPublishedContent>("image");
+					var ToolTip = content.Value<string>("tooltipText");
+					var socialMediaURL = content.Value<string>("socialMediaURL");
+
+					@if (SocialLink != null)
+					{
+						<a href="@socialMediaURL" title="@ToolTip" target="@Target">
+						    <img src="@Image.Url()" class="social-media-icon" />
+						</a>
+					}
+				}
+            }
+        </div>
     </div>
     <div class="col-lg-3 col-xs-12 links">
       <h4 class="mt-lg-0 mt-sm-3">Company</h4>
@@ -52,8 +76,27 @@
     <div class="col-lg-4 col-xs-12 location">
       <h4 class="mt-lg-0 mt-sm-4">Location</h4>
       <p>801, 8th floor, Square 1, Binori B, BRTS road, Ambli, Ahmedabad, Gujarat 380058</p>
-      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
-      <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
+      <p class="contact_info">
+          @if (ContactusLinks != null)
+				{
+					var phoneClass = string.Empty;
+					var i = 0;
+					@foreach (var link in ContactusLinks)
+					{
+						if (i == 0)
+						{
+							phoneClass = "fas fa-envelope";
+						}
+						else
+						{
+							phoneClass = "fas fa-phone me-2";
+						}
+						<a href="@link.Url"><i class="@phoneClass"></i>@link.Name</a>
+						i++;
+					}
+
+				}
+      </p>
     </div>
   </div>
   <div class="row mt-5">
