@@ -1,0 +1,32 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+<html>
+
+    <head>
+    <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+	<!-- Bootstrap CSS -->
+	
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" />
+   
+    <link href="~/css/style.css" rel="stylesheet" />
+	<title>@Model.Name</title>
+    </head>
+
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+<body>
+
+    
+    @RenderBody()
+	
+</body>
+</html>

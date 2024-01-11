@@ -1,0 +1,32 @@
+<svg id="Group_22535" data-name="Group 22535" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_165" data-name="Rectangle 165" width="24" height="24" fill="none"/>
+    </clipPath>
+  </defs>
+  <rect id="Rectangle_145" data-name="Rectangle 145" width="22.547" height="20.109" transform="translate(0.703 3.094)" fill="#fff"/>
+  <rect id="Rectangle_146" data-name="Rectangle 146" width="2" height="2" transform="translate(5 9)" fill="#003575"/>
+  <rect id="Rectangle_147" data-name="Rectangle 147" width="2" height="2" transform="translate(8 9)" fill="#003575"/>
+  <rect id="Rectangle_148" data-name="Rectangle 148" width="2" height="2" transform="translate(11 9)" fill="#003575"/>
+  <rect id="Rectangle_149" data-name="Rectangle 149" width="2" height="2" transform="translate(14 9)" fill="#003575"/>
+  <rect id="Rectangle_150" data-name="Rectangle 150" width="2" height="2" transform="translate(17 9)" fill="#003575"/>
+  <rect id="Rectangle_151" data-name="Rectangle 151" width="2" height="2" transform="translate(5 12)" fill="#003575"/>
+  <rect id="Rectangle_152" data-name="Rectangle 152" width="2" height="2" transform="translate(8 12)" fill="#003575"/>
+  <rect id="Rectangle_153" data-name="Rectangle 153" width="2" height="2" transform="translate(11 12)" fill="#003575"/>
+  <rect id="Rectangle_154" data-name="Rectangle 154" width="2" height="2" transform="translate(14 12)" fill="#003575"/>
+  <rect id="Rectangle_155" data-name="Rectangle 155" width="2" height="2" transform="translate(17 12)" fill="#003575"/>
+  <rect id="Rectangle_156" data-name="Rectangle 156" width="2" height="2" transform="translate(5 15)" fill="#003575"/>
+  <rect id="Rectangle_157" data-name="Rectangle 157" width="2" height="2" transform="translate(8 15)" fill="#003575"/>
+  <rect id="Rectangle_158" data-name="Rectangle 158" width="2" height="2" transform="translate(11 15)" fill="#003575"/>
+  <rect id="Rectangle_159" data-name="Rectangle 159" width="2" height="2" transform="translate(14 15)" fill="#003575"/>
+  <rect id="Rectangle_160" data-name="Rectangle 160" width="2" height="2" transform="translate(17 15)" fill="#003575"/>
+  <rect id="Rectangle_161" data-name="Rectangle 161" width="2" height="2" transform="translate(5 18)" fill="#003575"/>
+  <rect id="Rectangle_162" data-name="Rectangle 162" width="2" height="2" transform="translate(8 18)" fill="#003575"/>
+  <rect id="Rectangle_163" data-name="Rectangle 163" width="2" height="2" transform="translate(11 18)" fill="#003575"/>
+  <rect id="Rectangle_164" data-name="Rectangle 164" width="2" height="2" transform="translate(14 18)" fill="#003575"/>
+  <g id="Group_22536" data-name="Group 22536">
+    <g id="Group_22535-2" data-name="Group 22535" clip-path="url(#clip-path)">
+      <path id="Path_1550" data-name="Path 1550" d="M23.25,2.25h-3V.75a.75.75,0,0,0-1.5,0v1.5h-1.5V.75a.75.75,0,0,0-1.5,0v1.5h-1.5V.75a.75.75,0,0,0-1.5,0v1.5h-1.5V.75a.75.75,0,0,0-1.5,0v1.5H8.25V.75a.75.75,0,0,0-1.5,0v1.5H5.25V.75a.75.75,0,0,0-1.5,0v1.5h-3A.749.749,0,0,0,0,3V23.25A.749.749,0,0,0,.75,24h22.5a.749.749,0,0,0,.75-.75V3a.749.749,0,0,0-.75-.75M1.5,22.5V3.75H3.75v1.5a.75.75,0,0,0,1.5,0V3.75h1.5v1.5a.75.75,0,0,0,1.5,0V3.75h1.5v1.5a.75.75,0,0,0,1.5,0V3.75h1.5v1.5a.75.75,0,0,0,1.5,0V3.75h1.5v1.5a.75.75,0,0,0,1.5,0V3.75h1.5v1.5a.75.75,0,0,0,1.5,0V3.75H22.5V22.5Z" fill="#003575"/>
+    </g>
+  </g>
+</svg>

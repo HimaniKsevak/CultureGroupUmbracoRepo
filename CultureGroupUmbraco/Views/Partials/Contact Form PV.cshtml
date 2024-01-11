@@ -1,0 +1,163 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<!-- Contact Form -->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form_label">First name</label>
+                <input type="text" id="FirstName" class="form-control" placeholder="Enter" />
+            <div id="errorMessageFirstName" style="display:none;color:red;">First Name is Required</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form_label">Last name</label>
+                <input type="text" id="LastName" class="form-control" placeholder="Enter" />
+            <div id="errorMessageLastName" style="display:none;color:red;">Last Name is Required</div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="form_label">Email</label>
+                <input type="email" id="Email" class="form-control" placeholder="Enter Email" />
+            <div id="errorMessageEmail" style="display:none;color:red;">Email is Required</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form_label">Phone Number</label>
+                <input type="number" id="PhoneNumber"class="form-control" placeholder="Phone Number" />
+            <div id="errorMessagePhoneNumber" style="display:none;color:red;">Phone Numbar is Required</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form_label">Subject</label>
+                <select class="form-control form-select">
+                    <option>Select</option>
+                    <option>Select 1</option>
+                    <option>Select 2</option>
+                    <option>Select 3</option>
+                </select>
+            <div id="errorMessageSubject" style="display:none;color:red;">Subject is Required</div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="form_label">Message</label>
+                <textarea type="text" id="Message" class="form-control" placeholder="Enter Message"></textarea>
+            <div id="errorMessage" style="display:none;color:red;" Message is Required</div>
+            </div>
+        </div>
+    <input type="submit" style="float:right" value="submit" onclick="Myfun()" />
+    </div>
+
+
+
+@*<script src="https://www.google.com/recaptcha/api.js?render=6LcEKj4iAAAAADhcbMt8HWQLn6zoyebg5fHIEvBU"></script>*@
+@*<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">*@
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+
+<!-- End Contact Form -->
+<script>
+
+    function Myfun() 
+    {
+        debugger
+        var result = valditaion();
+        if (result == false) {
+            return false;
+        }
+        var FirstName = $("#FirstName").val();
+        var LastName = $("#LastName").val();
+        var Email = $("#Email").val();
+        var PhoneNumber = $("#PhoneNumber").val();
+        var Subject = $("#Subject option:selected").text();
+        var Message = $("#Message").val();
+
+        var data = { "FirstName": FirstName, "LastName": LastName, "Email": Email, "PhoneNumber": PhoneNumber,"Subject":Subject, "Message": Message };
+
+        $.ajax({
+            type: "POST",
+            url: '/umbraco/api/ContactUs/ContactForm',
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+            },
+            error: function (resp) {
+                debugger
+
+                if (resp.status === 200) {
+                    toastr.success("Email Sent Successfully");
+
+                    $("#FirstName").val("");
+                    $("#LastName").val("");
+                    $("#Email").val("");
+                    $("#PhoneNumber").val("");
+                    $("#Subject").val("");
+                    $("#Message").val("");
+                } else {
+                    toastr.error(resp.responseText)
+                }
+            }
+        });
+    }
+    function valditaion() {
+        debugger
+        var isValid = true;
+        if ($('#FirstName').val() ==="") {
+            $("#errorMessageFirstName").show();
+            isValid = false;
+        }
+        else{
+            $("#errorMessageFirstName").hide();
+        }
+
+        if ($('#LastName').val() === "") {
+            $("#errorMessageLastName").show();
+            isValid = false;
+        }
+        else {
+            $("#errorMessageLastName").hide();
+        }
+
+        if ($('#Email').val() === "") {
+            $("#errorMessageEmail").show();
+            isValid = false;
+        }
+        else {
+            $("#errorMessageEmail").hide();
+        }
+
+        if ($('#PhoneNumber').val() === "") {
+            $("#errorMessagePhoneNumber").show();
+            isValid = false;
+        }
+        else {
+            $("#errorPhoneNumber").hide();
+        }
+
+        if ($('#Subject').val() === "") {
+            $("#errorMessageSubject").show();
+            isValid = false;
+        }
+        else {
+            $("#errorSubject").hide();
+        }
+        if ($('#Message').val() === "") {
+            $("#errorMessage").show();
+            isValid = false;
+        }
+        else {
+            $("#errorMessage").hide();
+        }
+         return isValid;
+    }
+</script>
