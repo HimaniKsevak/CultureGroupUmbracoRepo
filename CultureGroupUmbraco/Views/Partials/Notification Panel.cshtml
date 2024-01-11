@@ -1,0 +1,34 @@
+﻿@using StackExchange.Profiling.Data
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+
+	bool IsEvent = false;
+	string EventTitle = string.Empty;
+	string EventMessage = string.Empty;
+
+	var Events = Model.Value<IEnumerable<BlockListItem>>("EventList", fallback: Fallback.ToAncestors);
+	foreach (var Event in Events)
+	{
+		var content = Event.Content;
+		var EventDate = content.Value<string>("EventDate");
+		var CurrentDate = DateTime.Now.Date.ToString();
+		if (EventDate.ToString() == CurrentDate.ToString())
+		{
+			IsEvent = true;
+			EventTitle = content.Value<string>("EventTitle");
+			EventMessage = content.Value<string>("EventMessage");
+			break;
+		}
+	}
+}
+
+
+@if (IsEvent)
+{
+	<div class="homePageBanner">
+		<h3 class="bannerTitle">@EventTitle</h3>
+		<p>@EventMessage</p>
+	</div>
+}
