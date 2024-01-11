@@ -1,6 +1,27 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = "Master.cshtml";
+
+	var HomeBannerImage = Model.Value<IPublishedContent>("homeBannerImage")?.Url() ?? "";
 }
+
+<div class="banner_sec home_banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 d-block d-md-none d-lg-none d-xl-none">
+				<div class="page_head">
+					<h3>@Model.Value("bannerHeading")</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.home_banner {
+		background: url(@HomeBannerImage);
+		background-size: cover;
+	}
+</style>
