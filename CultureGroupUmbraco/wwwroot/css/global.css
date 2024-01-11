@@ -46,3 +46,13 @@
     display: inline-flex;
     align-items: center;
 }
+
+.homePageBanner {
+    text-align: center;
+    width: 100%;
+    padding: 20px 20px;
+    background-color: #fad634;
+}
+.bannerTitle {
+    font-weight: 700;
+}
