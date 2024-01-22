@@ -1,0 +1,58 @@
+﻿body {
+    font-family: Montserrat, sans-serif;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 48px;
+    height: 48px;
+}
+
+.footer {
+    background: rgb(33, 37, 41);
+    color: white;
+}
+
+    .footer .links ul {
+        list-style-type: none;
+    }
+
+    .footer .links li a {
+        color: gray;
+        transition: color .2s;
+        text-decoration: none;
+    }
+
+        .footer .links li a:hover {
+            color: white;
+        }
+
+.social-media-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.contact_info a {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.homePageBanner {
+    text-align: center;
+    width: 100%;
+    padding: 20px 20px;
+    background-color: #fad634;
+}
+.bannerTitle {
+    font-weight: 700;
+}
