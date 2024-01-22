@@ -1,19 +1,70 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactUs>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-	Layout = "HomePage.cshtml";
+	Layout = "Master.cshtml";
+	var ContactBanner = Model.Value<IPublishedContent>("contactBanner")?.Url() ?? "";
+	var SocialLinks = Model.Value<IEnumerable<BlockListItem>>("socialMediaIcons");
 }
-@{
-	var selection = Umbraco.ContentAtRoot().FirstOrDefault()
-    .Children()
-    .Where(x => x.IsVisible());
-}
-<ul>
-	@foreach (var item in selection)
-	{
-		<li>
-			<a href="@item.Url()">@item.Name()</a>
-		</li>
+<div class="row">
+<div class="">
+	<div class="container max_w_965">
+		<div class="page_head">
+			@*<h2 class="m-0">@Model.Value("contactUsTitle")</h2>*@
+			<h2 class="m-0">@Model.Value("titletext")</h2>
+		</div>
+	</div>
+</div>
+<div class="row">
+    
+
+<div class="contact_page py_60 gray_bg">
+	<div class="container max_w_965">
+		<div class="mb-4">
+			@Model.Value("loremIpsumDescription")
+		</div>
+
+		<div class="row pt-3">
+			@*<div class="col-md-5">
+				<div class="contct_info">
+					@Model.Value("contactInfo")
+					<div>
+						<h4>@Model.Value("connectHeading")</h4>
+						<div class="social_media">
+							@if (SocialLinks != null)
+							{
+								foreach (var SocialLink in SocialLinks)
+								{
+									var content = SocialLink.Content;
+									var Target = content.Value<string>("Target");
+									var Image = content.Value<IPublishedContent>("image");
+									var ToolTip = content.Value<string>("tooltipText");
+									var socialMediaURL = content.Value<string>("socialMediaURL");
+
+									@if (SocialLink != null)
+									{
+										<a href="@socialMediaURL" title="@ToolTip" target="@Target"><img src="@Image.Url()" /></a>
+									}
+								}
+							}
+						</div>
+					</div>
+				</div>
+			</div> *@
+			<div class="col-md-7">
+				<div class="contact_form">
+                @await Html.PartialAsync("Contact Form PV")
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<style>
+	.contact_banner {
+		background: url(@ContactBanner) no-repeat;
+		background-size: cover;
 	}
-</ul>
+</style>							
+            
