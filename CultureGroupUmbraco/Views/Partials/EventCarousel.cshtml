@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.Blocks
+
+@{
+    var typedMultiMediaPicker = Model.Value<IEnumerable<BlockListItem>>("EventCarousel");
+}
+
+@if (typedMultiMediaPicker != null)
+{
+    var i = 0;
+    <div id="EventCarousel" class="carousel slide w-75 m-auto" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (var entry in typedMultiMediaPicker)
+            {
+                var content = entry.Content;
+                var Image = content.Value<IPublishedContent>("eventcarouselimage")?.Url() ?? "";
+                <div class="carousel-item @(i==0 ? "active" : "")">
+                    <img src="@Image" height="550" class="d-block w-100" alt="...">
+                </div>
+                i++;
+            }
+        </div>
+    </div>    
+}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myCarousel = document.querySelector('#EventCarousel')
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 2000,
+            wrap: true
+        });
+    });
+</script>
