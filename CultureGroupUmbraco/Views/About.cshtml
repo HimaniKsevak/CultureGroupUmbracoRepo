@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.About>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var Employees = Model.Value<IEnumerable<BlockListItem>>("profileList");
+}
+
+<div class="about-section">
+    <h1>About Us Page</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+</div>
+
+<h2 class="text-center mt-2">Our Team</h2>
+<div class="row">
+    @foreach(var Emp in Employees)
+    {
+        var content = Emp.Content;
+        var Image = content.Value<IPublishedContent>("profilePhoto");
+        var Name = content.Value<string>("employeeName");
+        var JobTitle = content.Value<string>("jobTitle");
+        var Description = content.Value<string>("description");
+        var Email = content.Value<string>("email");
+
+        <div class="profile">
+            <div class="card">
+                <img src="@Image.Url()" alt="@Name" class="w-100">
+                <div class="innerProfile">
+                    <h2>@Name</h2>
+                    <p class="title">@JobTitle</p>
+                    <p>@Description</p>
+                <p>@Email</p>
+                    <p><button class="profile-button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
