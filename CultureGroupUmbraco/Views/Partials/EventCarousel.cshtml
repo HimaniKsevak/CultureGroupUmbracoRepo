@@ -8,9 +8,9 @@
 @if (typedMultiMediaPicker != null)
 {
     var i = 0;
-    <div id="EventCarousel" class="carousel slide w-75 m-auto" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            @foreach (var entry in typedMultiMediaPicker)
+    <div id="EventCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner w-75 m-auto">
+            @foreach (var item in MultiMedia)
             {
                 var content = entry.Content;
                 var Image = content.Value<IPublishedContent>("eventcarouselimage")?.Url() ?? "";
@@ -19,6 +19,14 @@
                 </div>
                 i++;
             }
+            <button class="carousel-control-prev" type="button" data-bs-target="#EventCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#EventCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>    
 }
