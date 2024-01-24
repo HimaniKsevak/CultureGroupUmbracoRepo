@@ -109,6 +109,9 @@
         background-color: #555;
     }
 
+#EventCarousel {
+    background-color: #212529;
+}
 @media screen and (max-width: 650px) {
     .profile {
         width: 100%;
