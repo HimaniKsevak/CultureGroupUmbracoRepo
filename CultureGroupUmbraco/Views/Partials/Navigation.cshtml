@@ -14,29 +14,29 @@
 }
 
 
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-        <a href="/">
             @if (HeaderLogo != null)
             {
                 <img class="img" src="@HeaderLogo" title="logo" alt="logo" style="width:40px;"/>
             }
-        </a>
     </a>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
         @{
             var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
         }
         
         @if (selection?.Length > 0)
         {
-          <ul class="navbar-nav ms-md-auto gap-2">
+          <ul class="navbar-nav">
               @foreach (var item in selection)
                 {
-                    <li class="@(item.IsAncestorOrSelf(Model) ? "current" : null)">
-                      <a class="nav-link" href="@item.Url(PublishedUrlProvider)"><i class="bi bi-people-fill me-2"></i>@item.Name</a>
+                    <li class="nav-item @(item.IsAncestorOrSelf(Model) ? "current" : null)">
+                      <a class="nav-link" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
                     </li>
                 }
           </ul>
