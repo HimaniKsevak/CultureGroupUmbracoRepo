@@ -1,0 +1,70 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Announcement>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var blocks = Model.Value<IEnumerable<BlockListItem>>("relatedBlocks");
+}
+
+<div class="visit-country">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="section-heading">
+                    <h2>Visit One Of Our Events Now</h2>
+                    <p>Here is the list of upcoming events that we will celebrate together.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-5">
+            @* <div class="col-lg-8"> *@
+            <div>
+                <div class="items">
+                    <div class="row">
+                        @foreach (var blockitem in blocks)
+                        {
+                            var content = blockitem.Content;
+                            var Domesticimage = content.Value<IPublishedContent>("image");
+                            var Heading = content.Value("heading");
+                            var link = content.Value<IEnumerable<Link>>("studyTitle").FirstOrDefault();
+                            var Description = content.Value("description");
+                            <div class="col-lg-12">
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-5">
+                                            <div class="image">
+                                                @* <img src="assets/images/country-01.jpg" alt=""> *@
+                                                @if (Domesticimage != null)
+                                                {
+                                                    <img src="@Domesticimage.Url()" />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-7" style="display: flex; flex-direction: column;">
+                                            <div class="right-content">
+                                                <h4 class="mt-2 fw-bold">@Heading</h4>
+                                                <div class="main-button">
+                                                    <a href="#">Explore More</a>
+                                                </div>
+                                                <p class="event_des">@Description</p>
+                                                
+                                            </div>
+                                            <div class="content" style="flex: 1;">
+                                                
+                                            </div>
+                                            <div class="text-button">
+                                                <a href="#">Know More <i class="fa fa-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
