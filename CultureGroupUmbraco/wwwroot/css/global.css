@@ -286,9 +286,39 @@ body {
 	margin-top: 10px;
 }
 
+.py_5 {
+	padding-top: 13rem !important;
+	padding-bottom: 13rem !important;
+}
+
+.page_head h3 {
+	font-size: 14px;
+	color: darkgreen;
+	font-weight: 600;
+	line-height: normal;
+	/*margin: 0 0 11px;*/
+	margin-bottom: 13px;
+}
+
+.page_head h2 {
+	font-size: 30px;
+	font-weight: 500;
+	color: var(--text-color);
+	margin: 0 0 13px;
+}
+
+.page_head p {
+	font-size: 16px;
+	color: var(--text-color);
+	font-weight: 300;
+	line-height: 23px;
+}
+.py_60 {
+	padding: 60px 0 !important;
+}
+
 
 @media screen and (max-width: 1024px) {
-
 	.historyImg {
 		width: 100%;
 		object-fit: contain;
