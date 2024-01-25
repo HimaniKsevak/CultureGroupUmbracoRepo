@@ -182,23 +182,23 @@ body {
     }
 }
 }
-	.case_studies_sec a {
-		text-decoration: none;
-	}
-.case_studies_sec.pt-0 {
+.culture_activity_sec a {
+	text-decoration: none;
+}
+.culture_activity_sec.pt-0 {
 	padding-top: 0px !important;
 }
-	.case_studies_sec .page_head {
-		padding: 0 18px;
-	}
-	.case_studies_sec {
-		padding: 50 0 105px;
-		position: relative;
-	}
-.case_studies_sec .row.post_row > div {
+.culture_activity_sec .page_head {
+	padding: 0 18px;
+}
+.culture_activity_sec {
+	padding: 50 0 105px;
+	position: relative;
+}
+	.culture_activity_sec .row.post_row > div {
 		padding-bottom: 15px;
 	}
-	.case_studies_sec .more_btn {
+	.culture_activity_sec .more_btn {
 		position: absolute;
 		bottom: 35px;
 	}
