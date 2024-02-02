@@ -1,6 +1,115 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = "Master.cshtml";
+
+	var HomeBannerImage = Model.Value<IPublishedContent>("homeBannerImage")?.Url() ?? "";
+    var blocks = Model.Value<IEnumerable<BlockListItem>>("eventDetails", fallback: Fallback.ToAncestors);
+    var CompanyHistory = Model.Value<IEnumerable<BlockListItem>>("companyHistory");
+    var SliderIcon1 = Model.Value<IPublishedContent>("sliderIcon1")?.Url() ?? "";
+    var SliderIcon2 = Model.Value<IPublishedContent>("sliderIcon2")?.Url() ?? "";
+    var CompanyEventsHistory = Model.Value<IEnumerable<BlockListItem>>("companyEventsHistory");
 }
+
+<div class="banner_sec home_banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 d-block d-md-none d-lg-none d-xl-none">
+				<div class="page_head">
+					<h3>@Model.Value("bannerHeading")</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="history_slider mt-5">
+    <div class="container">
+        <div class="carousel slide carouselHistory" data-ride="carousel">
+            <div class="carousel-inner">
+                @if (CompanyEventsHistory != null)
+                {
+                    var i = 0;
+                    foreach (var item in CompanyEventsHistory)
+                    {
+                        var content = item.Content;
+                        var Title = content.Value("title");
+                        var Heading = content.Value("heading");
+                        var Description = content.Value("description");
+                        var Image = content.Value<IPublishedContent>("historyImages")?.Url() ?? "";
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="page_head">
+                                        <h3>@Title</h3>
+                                        <h2>@Heading</h2>
+                                        @Description
+
+                                    </div>
+                                </div>
+                                <div class="mt-4 col-12 col-lg-6 col-md-6 col-sm-12">
+                                    <img class="historyImg" src="@Image" title="slide img" alt="slide img" />
+                                </div>
+                            </div>
+                        </div>
+                        i++;
+                    }
+                }
+                <div class="md-carousel-buttons py_5">
+                    <button class="carousel_arrow carousel-control-prev" type="button" data-bs-target=".carouselHistory" data-bs-slide="prev">
+                        @if (SliderIcon1 != null)
+                        {
+                            <img src="@SliderIcon1" />
+                        }
+                    </button>
+                    <button class="carousel_arrow carousel-control-next" type="button" data-bs-target=".carouselHistory" data-bs-slide="next">
+                        @if (SliderIcon2 != null)
+                        {
+                            <img src="@SliderIcon2" />
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="culture_activity_sec py_60">
+    <div class="container">
+        <div class="page_head pb-md-2">
+            <h3>@Model.Value("heading")</h3>
+            <div class="d-sm-flex justify-content-between mb-4">
+                <h2 class="mb-sm-0">@Model.Value("subHeading")</h2>
+            </div>
+        </div>
+        <div class="row post_row">
+            @foreach (var blockitem in blocks)
+            {
+                var content = blockitem.Content;
+                var Eventimage = content.Value<IPublishedContent>("image");
+                var Heading = content.Value("heading");
+                var Description = content.Value("description");
+                @* var link = content.Value<Link>("eventUrl"); *@
+                <div class="col-md-6">
+                    <div class="post_img">
+                        @if (Eventimage != null)
+                        {
+                            <img src="@Eventimage.Url()" width="500"/>
+                        }
+                    </div>
+                    <div class="post_info mt-3">
+                        @Description
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+	.home_banner {
+		background: url(@HomeBannerImage);
+		background-size: cover;
+	}
+</style>
