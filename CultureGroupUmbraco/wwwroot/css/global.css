@@ -451,7 +451,3 @@ body {
 			max-height: 275px;
 		}
 	}
-
-	@media (max-width: 767px) .up_coming_event {
-		padding: 65px 8px;
-	}
