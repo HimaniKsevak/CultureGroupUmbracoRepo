@@ -202,6 +202,7 @@
     .visit-country .item .image img {
         border-radius: 23px;
         width: 100%;
+        height: 100%;
         overflow: hidden;
     }
 
@@ -211,7 +212,6 @@
     }
 
     .visit-country .item .right-content .main-button {
-        position: absolute;
         right: 0;
         top: 0;
     }
