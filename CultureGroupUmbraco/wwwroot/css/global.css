@@ -4,6 +4,44 @@ body {
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+video {
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.swiper-container {
+    border: 2px solid #ddd; 
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.event-container {
+    height: 500px; 
+    width: 400px; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .event-container:hover {
+        transform: scale(1.03);
+    }
+
+.media-container img,
+.media-container video {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: white;
 }
