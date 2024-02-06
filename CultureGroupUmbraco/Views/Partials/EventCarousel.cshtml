@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.Blocks
+
+@{
+    var MultiMedia = Model.Value<IEnumerable<BlockListItem>>("EventCarousel");
+}
+
+@if (MultiMedia != null)
+{
+    var i = 0;
+    <div id="EventCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner w-75 m-auto">
+            @foreach (var item in MultiMedia)
+            {
+                var content = item.Content;
+                var Image = content.Value<IPublishedContent>("eventcarouselimage")?.Url() ?? "";
+                <div class="carousel-item @(i==0 ? "active" : "")">
+                    <img src="@Image" height="550" class="d-block w-100" alt="...">
+                </div>
+                i++;
+            }
+            <button class="carousel-control-prev" type="button" data-bs-target="#EventCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#EventCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+}

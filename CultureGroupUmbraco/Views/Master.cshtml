@@ -4,10 +4,10 @@
 
 @await Html.PartialAsync("Navigation")
 @await Html.PartialAsync("Notification Panel")
+@await Html.PartialAsync("EventCarousel")
 
-<div class="vh-100 justify-content-center align-items-center">
 	@RenderBody()
-</div>
+
 @await Html.PartialAsync("Footer")
 
 <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
