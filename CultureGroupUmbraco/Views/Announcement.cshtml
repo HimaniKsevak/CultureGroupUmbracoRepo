@@ -8,6 +8,8 @@
     var blocks = Model.Value<IEnumerable<BlockListItem>>("relatedBlocks");
 }
 
+@await Html.PartialAsync("EventCarousel")
+
 <div class="visit-country">
     <div class="container">
         <div class="row">
