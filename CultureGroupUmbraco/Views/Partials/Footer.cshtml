@@ -16,93 +16,98 @@
     var ContactusLinks = Model.Root()?.Value<IEnumerable<Link>>("contactUsLink");
 }
 
+<footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
-<div class="mt-5 pt-5 pb-5 footer">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-1 col-xs-12 logo">
-        <a class="navbar-brand" href="#">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+        
+          <div class="col-lg-1 col-md-6">
             <a href="/">
                 @if (FooterLogo != null)
                 {
                     <img class="img" src="@FooterLogo" title="logo" alt="logo" style="width:40px;"/>
                 }
             </a>
-        </a>
-    </div>
-    <div class="col-lg-4 col-xs-12 about-company">
-      <h2>Heading</h2>
-      <p class="pr-5">Events is a leading corporate event management company operating in India</p>
-      <!--<p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>-->
-        <div class="social_media">
-			 @if (SocialLinks != null)
-            {
-				foreach (var SocialLink in SocialLinks)
-				{
-					var content = SocialLink.Content;
-					var Target = content.Value<string>("Target");
-					var Image = content.Value<IPublishedContent>("image");
-					var ToolTip = content.Value<string>("tooltipText");
-					var socialMediaURL = content.Value<string>("socialMediaURL");
-
-					@if (SocialLink != null)
-					{
-						<a href="@socialMediaURL" title="@ToolTip" target="@Target">
-						    <img src="@Image.Url()" class="social-media-icon" />
-						</a>
-					}
-				}
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            
+            @{
+                var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
             }
-        </div>
-    </div>
-    <div class="col-lg-3 col-xs-12 links">
-      <h4 class="mt-lg-0 mt-sm-3">Company</h4>
-         @{
-            var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
-        }
-        
-        @if (selection?.Length > 0)
-        {
-          <ul class="m-0 p-0">
-              @foreach (var item in selection)
-                {
-                    <li class="@(item.IsAncestorOrSelf(Model) ? "current" : null)">
-                      <a href="@item.Url(PublishedUrlProvider)">@item.Name</a>
-                    </li>
-                }
-          </ul>
-         }
-    </div>
-    <div class="col-lg-4 col-xs-12 location">
-      <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-      <p>801, 8th floor, Square 1, Binori B, BRTS road, Ambli, Ahmedabad, Gujarat 380058</p>
-      <p class="contact_info">
-          @if (ContactusLinks != null)
-				{
-					var phoneClass = string.Empty;
-					var i = 0;
-					@foreach (var link in ContactusLinks)
-					{
-						if (i == 0)
-						{
-							phoneClass = "fas fa-envelope";
-						}
-						else
-						{
-							phoneClass = "fas fa-phone me-2";
-						}
-						<a href="@link.Url"><i class="@phoneClass"></i>@link.Name</a>
-						i++;
-					}
+            
+            @if (selection?.Length > 0)
+            {
+              <ul>
+                  @foreach (var item in selection)
+                    {
+                        <li class="@(item.IsAncestorOrSelf(Model) ? "current" : null)">
+                            <i class="bx bx-chevron-right"></i> <a href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                        </li>
+                    }
+              </ul>
+             }
+          </div>
 
-				}
-      </p>
+          <div class="col-lg-4 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+                <p>
+                    @Model.Root()?.Value("location")
+                </p>
+              
+                @if (ContactusLinks != null)
+    			{
+    				var phoneClass = string.Empty;
+    				var i = 0;
+    				@foreach (var link in ContactusLinks)
+    				{
+    					if (i == 0)
+    					{
+    						phoneClass = "fas fa-envelope me-2";
+    					}
+    					else
+    					{
+    						phoneClass = "fas fa-phone me-2";
+    					}
+    					<h6><a href="@link.Url"><i class="@phoneClass"></i>@link.Name</a></h6>
+    					i++;
+    				}
+    
+    			}
+            </p>
+
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-info">
+            <h3>About Event Management</h3>
+            <p>@Model.Root()?.Value("aboutEventManagement")</p>
+            <div class="social-links mt-3">
+                @if (SocialLinks != null)
+                {
+    				foreach (var SocialLink in SocialLinks)
+    				{
+    					var content = SocialLink.Content;
+    					var Target = content.Value<string>("Target");
+    					var Image = content.Value<IPublishedContent>("image");
+    					var ToolTip = content.Value<string>("tooltipText");
+    					var socialMediaURL = content.Value<string>("socialMediaURL");
+    
+    					@if (SocialLink != null)
+    					{
+    						<a href="@socialMediaURL" title="@ToolTip" target="@Target">
+    						    <img src="@Image.Url()" class="social-media-icon" />
+    						</a>
+    					}
+    				}
+                }
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col copyright">
-      <p class=""><small class="text-white-50">© 2024 Events Management Company. All Rights Reserved.</small></p>
+    <div class="text-center pt-1">
+        @Model.Root()?.Value("copyright")
     </div>
-  </div>
-</div>
-</div>
+</footer>
